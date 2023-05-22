@@ -34,7 +34,7 @@ function setup() {
 function draw() {
   imageMode(CENTER);
   background(255);
-  if (!imagen) {
+  if (imprimir == false) {
     image(iconos[4], width / 2, height / 2);
   }
   if (!imprimir) {
@@ -42,8 +42,14 @@ function draw() {
     icono1.mover();
     icono2.mover();
     icono3.mover();
+        noStroke();
+    fill("#ff8080");
+    rectMode(CENTER);
+    
+    rect(width / 2, height - 40, 300, 60, 20);
   }
-  if (imagen) {
+  if (imagen || imprimir == true) {
+
     // chulo
     let xOffset = width / 2;
     let yOffset = height / 4;
@@ -144,6 +150,12 @@ function mousePressed() {
   icono1.mp();
   icono2.mp();
   icono3.mp();
+  if (mouseX > width / 2 - 150 && mouseX < width / 2 + 150) {
+    if (mouseY > height - 40 - 30 && mouseY < height + 40 + 30) {
+      console.log(mouseY);
+      imprimir = true;
+    }
+  }
 }
 
 function mouseDragged() {
