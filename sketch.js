@@ -42,7 +42,7 @@ function draw() {
     icono1.mover();
     icono2.mover();
     icono3.mover();
-        noStroke();
+    noStroke();
     fill("#ff8080");
     rectMode(CENTER);
     
