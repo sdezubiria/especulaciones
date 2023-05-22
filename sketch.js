@@ -45,7 +45,6 @@ function draw() {
     noStroke();
     fill("#ff8080");
     rectMode(CENTER);
-    
     rect(width / 2, height - 40, 300, 60, 20);
   }
   if (imagen || imprimir == true) {
