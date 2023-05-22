@@ -134,13 +134,30 @@ function draw() {
     pop();
 
     if (imprimir && num === 0) {
-      captureScreenshot();
-      let canvasElement = document.getElementsByTagName("canvas")[0];
-      let i = canvasElement.toDataURL("image/png");
-      let link = document.createElement("a");
-      link.href = i;
-      link.download = "myCanvas.png";
-      link.click();
+  // Get the p5.js canvas element
+  const canvas = document.getElementById("defaultCanvas0");
+
+  // Create a new canvas element to draw the screenshot on
+  const screenshotCanvas = document.createElement("canvas");
+  screenshotCanvas.width = canvas.width;
+  screenshotCanvas.height = canvas.height;
+
+  // Get the 2D context of the screenshot canvas
+  const context = screenshotCanvas.getContext("2d");
+
+  // Draw the p5.js canvas onto the screenshot canvas
+  context.drawImage(canvas, 0, 0);
+
+  // Convert the canvas image to a data URL
+  const dataURL = screenshotCanvas.toDataURL();
+
+  // Create a link element to download the screenshot
+  const link = document.createElement("a");
+  link.href = dataURL;
+  link.download = "screenshot.png";
+
+  // Programmatically trigger the download
+  link.click();
       num++;
     }
   }
@@ -261,30 +278,4 @@ class Icono {
   mr() {
     this.locked = false;
   }
-}
-function captureScreenshot() {
-  // Get the p5.js canvas element
-  const canvas = document.getElementById("defaultCanvas0");
-
-  // Create a new canvas element to draw the screenshot on
-  const screenshotCanvas = document.createElement("canvas");
-  screenshotCanvas.width = canvas.width;
-  screenshotCanvas.height = canvas.height;
-
-  // Get the 2D context of the screenshot canvas
-  const context = screenshotCanvas.getContext("2d");
-
-  // Draw the p5.js canvas onto the screenshot canvas
-  context.drawImage(canvas, 0, 0);
-
-  // Convert the canvas image to a data URL
-  const dataURL = screenshotCanvas.toDataURL();
-
-  // Create a link element to download the screenshot
-  const link = document.createElement("a");
-  link.href = dataURL;
-  link.download = "screenshot.png";
-
-  // Programmatically trigger the download
-  link.click();
 }
